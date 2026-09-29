@@ -1,0 +1,155 @@
+---
+import { ArrowUpRight, Sparkles, ExternalLink } from '@lucide/astro';
+
+const projects = [
+  {
+    title: 'Medivoy Travel Agency',
+    category: 'Travel & Tourism',
+    description:
+      'Website katalog paket tour & travel eksklusif dengan sistem booking cepat dan skor performa 99/100 di Google PageSpeed.',
+    tags: ['Astro', 'Tailwind CSS', 'High Performance'],
+    image:
+      'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80',
+    link: 'https://medivoy.id',
+    featured: true,
+  },
+  {
+    title: 'Bloom & Petal Florist',
+    category: 'Florist & Gift Shop',
+    description:
+      'Landing page eksklusif untuk bisnis buket bunga lokal dengan visual estetik, terintegrasi WhatsApp checkout secara instan.',
+    tags: ['Astro', 'UI/UX Design', 'Fast Loading'],
+    image:
+      'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=800&q=80',
+    link: '#',
+    featured: false,
+  },
+  {
+    title: 'Urban Interior Studio',
+    category: 'Architecture & Interior',
+    description:
+      'Website portofolio interaktif untuk jasa desain interior mewah dengan galeri arsitektur beresolusi tinggi.',
+    tags: ['Astro', 'GSAP Animation', 'Responsive'],
+    image:
+      'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80',
+    link: '#',
+    featured: false,
+  },
+];
+---
+
+<section
+  id="portfolio"
+  class="relative w-full max-w-6xl mx-auto px-4 py-16 md:py-24"
+>
+  <!-- SECTION HEADER -->
+  <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6 pb-8">
+    <div class="flex flex-col items-start gap-3">
+      <div class="inline-flex items-center gap-2 bg-yellow-300 text-slate-950 font-bold text-xs px-3.5 py-1.5 rounded-full border border-yellow-400/50 shadow-sm">
+        <Sparkles class="w-3.5 h-3.5 text-slate-950" />
+        <span>SELECTED WORKS</span>
+      </div>
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight font-heading">
+        KARYA{' '}
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-blue-500">
+          PILIHAN
+        </span>
+        <span class="text-yellow-400">.</span>
+      </h2>
+    </div>
+
+    <p class="text-slate-600 font-semibold text-base md:text-lg max-w-md">
+      Kumpulan proyek website yang dirancang khusus untuk meningkatkan{' '}
+      <span class="text-blue-600 underline decoration-yellow-400 decoration-2">
+        kredibilitas brand
+      </span>{' '}
+      dan konversi penjualan.
+    </p>
+  </div>
+
+  <!-- PROJECTS GRID -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {projects.map((project, index) => (
+      <div
+        class={`group relative bg-white/70 backdrop-blur-sm border border-slate-200/80 rounded-3xl p-5 md:p-7 flex flex-col justify-between hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 ${
+          project.featured ? 'md:col-span-2' : ''
+        }`}
+      >
+        <!-- Top Info & Image Preview -->
+        <div>
+          <!-- Image Wrapper with Browser Frame Style -->
+          <div class="relative overflow-hidden rounded-2xl bg-slate-100 border border-slate-200/80 mb-6 aspect-video group-hover:shadow-md transition-all">
+            <!-- Floating Category Badge -->
+            <div class="absolute top-4 left-4 z-10 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/20">
+              {project.category}
+            </div>
+
+            <!-- Image -->
+            <img
+              src={project.image}
+              alt={project.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+              loading="lazy"
+            />
+
+            <!-- Hover Overlay Action -->
+            <div class="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <span class="inline-flex items-center gap-2 bg-yellow-400 text-slate-950 font-bold text-sm px-5 py-2.5 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all">
+                Lihat Details <ExternalLink class="w-4 h-4" />
+              </span>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 mb-3">
+            {project.tags.map((tag) => (
+              <span class="text-[11px] font-bold text-slate-600 bg-slate-200/70 px-3 py-1 rounded-md">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-2xl md:text-3xl font-black text-slate-900 mb-3 group-hover:text-blue-600 transition-colors font-heading">
+            {project.title}
+          </h3>
+
+          <!-- Description -->
+          <p class="text-slate-600 text-sm md:text-base font-medium leading-relaxed mb-6">
+            {project.description}
+          </p>
+        </div>
+
+        <!-- Bottom Link / Action -->
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            Case Study #{index + 1}
+          </span>
+
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors"
+          >
+            <span>Kunjungi Web</span>
+            <ArrowUpRight class="w-4 h-4 text-yellow-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- BOTTOM CTA PORTOFOLIO -->
+  <div class="mt-12 text-center">
+    <a
+      href="https://wa.me/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center gap-3 bg-slate-900 hover:bg-blue-600 text-white font-bold text-sm sm:text-base px-8 py-4 rounded-full shadow-lg hover:shadow-blue-600/30 transition-all duration-300 group"
+    >
+      <span>Ingin Website Seperti Ini untuk Bisnis Anda?</span>
+      <ArrowUpRight class="w-5 h-5 text-yellow-400 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+    </a>
+  </div>
+</section>

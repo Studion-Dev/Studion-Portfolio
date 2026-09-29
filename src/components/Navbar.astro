@@ -1,0 +1,153 @@
+---
+import { MessageSquare, ArrowUpRight, Menu, X } from '@lucide/astro';
+
+const navLinks = [
+  { name: 'Portofolio', href: '#portfolio' },
+  { name: 'Layanan', href: '#services' },
+  { name: 'Proses', href: '#process' },
+  { name: 'Tentang', href: '#about' },
+  { name: 'Kontak', href: '#contact' },
+];
+---
+
+<header
+  id="navbar-header"
+  class="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 md:pt-6 transition-all duration-500 -translate-y-full opacity-0 pointer-events-none"
+>
+  <nav
+    id="main-nav"
+    class="w-full max-w-5xl rounded-full px-5 py-3 flex items-center justify-between nav-scrolled"
+  >
+    <!-- Brand / Logo -->
+    <a href="/#" class="flex items-center gap-2 group">
+      <span class="font-bold text-xl text-slate-900 tracking-wide font-['Momo_Trust_Display']">
+        STUDION<span class="text-blue-600">WEB</span>
+        <span class="text-yellow-400">.</span>
+      </span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="hover:text-blue-600 transition-colors duration-200 tracking-wide"
+          >
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- CTA Button -->
+    <div class="hidden md:flex items-center gap-3">
+      <a
+        href="https://wa.me/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-blue-600 hover:bg-yellow-400 text-white hover:text-slate-950 font-semibold text-sm px-5 py-2.5 rounded-full shadow-md shadow-blue-600/20 hover:shadow-yellow-400/30 transition-all duration-200 group"
+      >
+        <span>Diskusi WA</span>
+        <ArrowUpRight class="w-4 h-4 text-yellow-300 group-hover:text-slate-950 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden text-slate-800 hover:text-blue-600 p-1 focus:outline-none"
+      aria-label="Toggle Navigation Menu"
+    >
+      <Menu id="menu-icon-open" class="w-6 h-6" />
+      <X id="menu-icon-close" class="w-6 h-6 hidden" />
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden absolute top-20 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl p-6 flex-col gap-4 border border-slate-200 shadow-xl"
+  >
+    <ul class="flex flex-col gap-4 text-base font-semibold text-slate-800">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="mobile-link block hover:text-blue-600 transition-colors py-1"
+          >
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="pt-4 border-t border-slate-200 flex flex-col gap-3">
+      <a
+        href="https://wa.me/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-yellow-400 text-white hover:text-slate-950 font-semibold text-sm px-5 py-3 rounded-xl transition-all shadow-md"
+      >
+        <MessageSquare class="w-4 h-4 text-yellow-300" />
+        <span>Konsultasi via WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('navbar-header');
+  const hero = document.getElementById('hero');
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  // Trigger Navbar muncul jika scroll sudah melebihi 3/4 tinggi Hero
+  window.addEventListener('scroll', () => {
+    const heroHeight = hero ? hero.offsetHeight : 600;
+    const triggerPoint = heroHeight * 0.5; // 1/2 Hero
+
+    if (window.scrollY > triggerPoint) {
+      header?.classList.remove(
+        '-translate-y-full',
+        'opacity-0',
+        'pointer-events-none'
+      );
+      header?.classList.add(
+        'translate-y-0',
+        'opacity-100',
+        'pointer-events-auto'
+      );
+    } else {
+      header?.classList.add(
+        '-translate-y-full',
+        'opacity-0',
+        'pointer-events-none'
+      );
+      header?.classList.remove(
+        'translate-y-0',
+        'opacity-100',
+        'pointer-events-auto'
+      );
+    }
+  });
+
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    mobileMenu?.classList.toggle('flex');
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+  });
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      mobileMenu?.classList.remove('flex');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    });
+  });
+</script>

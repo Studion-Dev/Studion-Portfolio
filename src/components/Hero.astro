@@ -1,0 +1,70 @@
+---
+import { ArrowUpRight, Sparkles, CheckCircle2 } from '@lucide/astro';
+---
+
+<section
+  id="hero"
+  class="relative w-full max-w-6xl mx-auto px-4 pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden"
+>
+  <!-- Subtle Glowing Gradient Aksen Light Mode -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-blue-400/20 via-yellow-300/20 to-transparent blur-3xl rounded-full pointer-events-none -z-10"></div>
+
+  <!-- TOP SECTION: Body Description (Kiri) & CTA / Stats (Kanan) -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12 md:mb-20">
+    <!-- Kiri Atas: Short Body Text -->
+    <div class="lg:col-span-7 flex flex-col items-start gap-4">
+      <div class="inline-flex items-center gap-2 bg-yellow-300 text-slate-950 font-bold text-xs px-3.5 py-1.5 rounded-full border border-yellow-400/50 shadow-sm">
+        <Sparkles class="w-3.5 h-3.5 text-slate-950" />
+        <span>FREELANCER WEBSITE DEVELOPER</span>
+      </div>
+
+      <p class="text-slate-700 text-lg sm:text-xl md:text-2xl font-semibold leading-relaxed max-w-2xl">
+        Membantu bisnis{' '}
+        <span class="text-blue-600 underline decoration-yellow-400 decoration-4 underline-offset-4">
+          Owner
+        </span>{' '}
+        membangun website eksklusif, super cepat, dan siap mendatangkan calon
+        customer.
+      </p>
+
+      <div class="flex items-center gap-6 text-xs sm:text-sm font-semibold text-slate-600 pt-2">
+        <span class="flex items-center gap-1.5">
+          <CheckCircle2 class="w-4 h-4 text-blue-600" /> High Performance
+        </span>
+        <span class="flex items-center gap-1.5">
+          <CheckCircle2 class="w-4 h-4 text-blue-600" /> Basic SEO Optimized
+        </span>
+        <span class="flex items-center gap-1.5">
+          <CheckCircle2 class="w-4 h-4 text-blue-600" /> Custom Design
+        </span>
+      </div>
+    </div>
+
+    <!-- Kanan Atas: CTA & Quick Action -->
+    <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col items-start lg:items-end justify-between gap-4">
+      <a
+        href="https://wa.me/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-slate-900 hover:bg-blue-600 text-white font-bold text-base px-8 py-4 rounded-full shadow-xl hover:shadow-blue-600/30 transition-all duration-300 group"
+      >
+        <span>Mulai Konsultasi Proyek</span>
+        <ArrowUpRight class="w-5 h-5 text-yellow-400 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+      </a>
+
+      <p class="text-xs text-slate-500 font-medium lg:text-right">
+        ⚡ Slot terbatas untuk bulan ini — Respon cepat via WA
+      </p>
+    </div>
+  </div>
+
+  <div class="w-full pt-6 md:pt-10">
+    <h1 class="text-[12vw] sm:text-[11vw] lg:text-[10.5vw] font-black text-slate-900 leading-none tracking-tight text-center md:text-justify font-heading select-none">
+      STUDION
+      <span class="text-transparent bg-clip-text bg-linear-to-r pr-1 from-blue-800 to-blue-400">
+        WEB
+      </span>
+      <span class="text-yellow-400">.</span>
+    </h1>
+  </div>
+</section>

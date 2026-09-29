@@ -1,0 +1,78 @@
+@import 'tailwindcss';
+
+@layer base {
+  :root {
+    /* Light Theme Palette (Bukan Putih Polos Kaku) */
+    --bg-light: #f1f5f9; /* Slate 100 - Lembut di mata */
+    --text-main: #0f172a; /* Slate 900 - Kontras tinggi */
+    --border-light: rgba(15, 23, 42, 0.08);
+
+    /* Fonts */
+    --font-heading: 'Momo Trust Display', cursive, sans-serif;
+    --font-body: 'Tilt Neon', cursive, sans-serif;
+
+    /* Accents */
+    --color-electric-blue: #2563eb;
+    --color-yellow-electro: #facc15; /* Yellow/Volt Electro Accent */
+  }
+
+  body {
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+  }
+}
+
+/* Light Wide Grid Pattern (Memudar di Sudut) */
+.bg-wide-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 40%,
+    #000 30%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 40%,
+    #000 30%,
+    transparent 100%
+  );
+}
+
+/* Glass Wrapper Saat Di-Scroll */
+.nav-scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow:
+    0 10px 30px -10px rgba(0, 0, 0, 0.08),
+    0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}

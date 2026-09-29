@@ -1,0 +1,131 @@
+---
+import {
+  MessageSquare,
+  Sigma,
+  Code2,
+  Rocket,
+  CheckCircle2,
+  ArrowUpRight,
+  Sparkles,
+} from '@lucide/astro';
+
+const steps = [
+  {
+    number: '01',
+    icon: MessageSquare,
+    title: 'Konsultasi & Discovery',
+    subtitle: 'Tahap Orientasi & Goal Setting',
+    description:
+      'Diskusi santai via WhatsApp atau Google Meet untuk menggali kebutuhan bisnis Anda, target audiens, serta fitur utama yang wajib ada di website.',
+    detail: 'Gratis',
+  },
+  {
+    number: '02',
+    icon: Sigma,
+    title: 'Desain UI/UX & Wireframe',
+    subtitle: 'Visualisasi Brand Eksklusif',
+    description:
+      'Perancangan tata letak visual modern yang disesuaikan dengan identitas brand Anda. Mengutamakan kenyamanan pengunjung dan alur konversi.',
+    detail: 'Revisi Sampai Pas',
+  },
+  {
+    number: '03',
+    icon: Code2,
+    title: 'Development & Slicing',
+    subtitle: 'Eksekusi Clean Code',
+    description:
+      'Pengodean menggunakan framework Astro JS & Tailwind CSS untuk menghasilkan website dengan performa super cepat, ringan, dan aman.',
+    detail: 'Super Fast & Responsive',
+  },
+  {
+    number: '04',
+    icon: Rocket,
+    title: 'Testing & Launching',
+    subtitle: 'Serah Terima & Online',
+    description:
+      'Pengujian lintas perangkat, optimasi SEO dasar, integrasi domain & hosting, hingga website resmi mengudara dan siap digunakan.',
+    detail: 'Siap Pakai & Edukasi Singkat',
+  },
+];
+---
+
+<section
+  id="process"
+  class="relative w-full max-w-6xl mx-auto px-4 py-16 md:py-24"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+    <!-- LEFT SIDE: Sticky Concept Header -->
+    <div class="lg:col-span-5 lg:sticky lg:top-28 flex flex-col items-start">
+      <div class="inline-flex items-center gap-2 mb-3 bg-yellow-300 text-slate-950 font-bold text-xs px-3.5 py-1.5 rounded-full border border-yellow-400/50 shadow-sm">
+        <Sparkles class="w-3.5 h-3.5 text-slate-950" />
+        <span>HOW IT WORKS</span>
+      </div>
+
+      <h2 class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-heading leading-tight mb-6">
+        PROSES KERJA <br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-blue-500">
+          TERSTRUKTUR
+        </span>
+        <span class="text-yellow-400">.</span>
+      </h2>
+
+      <p class="text-slate-600 font-semibold text-base md:text-lg leading-relaxed mb-8">
+        Tanpa ribet. Empat langkah jelas untuk membawa ide bisnis Anda menjadi
+        aset website berkinerja tinggi.
+      </p>
+
+      <a
+        href="https://wa.me/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-3 bg-slate-900 hover:bg-blue-600 text-white font-bold text-sm px-6 py-3.5 rounded-full shadow-lg hover:shadow-blue-600/30 transition-all duration-300 group"
+      >
+        <span>Mulai Konsultasi</span>
+        <ArrowUpRight class="w-4 h-4 text-yellow-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+      </a>
+    </div>
+
+    <!-- RIGHT SIDE: Vertical Timeline Cards -->
+    <div class="lg:col-span-7 flex flex-col gap-6 relative">
+      <!-- Vertical Line Connector -->
+      <div class="absolute left-8 top-8 bottom-8 w-1.5 bg-yellow-400/80 hidden sm:block -z-10"></div>
+
+      {steps.map((step, index) => {
+        const IconComponent = step.icon;
+        return (
+          <div class="group relative bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-3xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
+            <div class="flex flex-col sm:flex-row items-start gap-5">
+              <!-- Number & Icon Badge -->
+              <div class="flex items-center gap-3 shrink-0">
+                <div class="w-12 h-12 rounded-2xl bg-slate-900 text-yellow-400 font-black text-lg font-heading flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-md">
+                  {step.number}
+                </div>
+              </div>
+
+              <!-- Content -->
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <h3 class="text-xl sm:text-2xl font-black text-slate-900 font-heading group-hover:text-blue-600 transition-colors">
+                    {step.title}
+                  </h3>
+                  <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                    {step.subtitle}
+                  </span>
+                </div>
+
+                <p class="text-slate-600 text-sm sm:text-base font-medium leading-relaxed mb-5">
+                  {step.description}
+                </p>
+
+                <div class="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-bold text-slate-500">
+                  <CheckCircle2 class="w-4 h-4 text-blue-600" />
+                  <span>{step.detail}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

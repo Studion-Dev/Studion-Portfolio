@@ -2,74 +2,79 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import {
-  Check,
-  Sparkles,
-  Zap,
-  MessageCircle,
-  ArrowRight,
-  ShieldCheck,
-  HelpCircle,
-} from '@lucide/astro';
+import { Check, X, Sparkles, Zap, ArrowRight, HelpCircle } from '@lucide/astro';
 
 const pricingPlans = [
   {
-    name: 'Starter Landing Page',
-    badge: 'Cocok untuk Meta Ads',
-    price: 'Rp 1.500.000',
+    name: 'Starter',
+    badge: 'Kebutuhan Dasar',
+    price: 'Rp 1.200.000',
     period: 'sekali bayar',
-    desc: 'Solusi cepat dan kencang untuk kebutuhan kampanye promosi produk atau jasa tunggal.',
+    desc: 'Solusi hemat untuk kebutuhan profil bisnis dasar yang simpel dan cepat tayang.',
     isPopular: false,
     features: [
-      '1 Halaman High Conversion',
-      'Desain Modern & Custom Tailor-Made',
-      'Ultra Fast Loading (Astro Tech)',
-      'Integrasi WhatsApp Direct CTA',
-      'Basic SEO & Open Graph Setup',
-      'Meta Pixel & Analytics Ready',
-      'Garansi Maintenance 1 Bulan',
+      { text: 'Custom Domain (.com / .id)', included: true },
+      { text: 'Cloud Hosting (Shared)', included: true },
+      { text: '3 Halaman Website', included: true },
+      { text: 'SSL & Keamanan Website', included: true },
+      { text: 'Responsive Design (HP & Desktop)', included: true },
+      { text: 'WhatsApp Direct CTA', included: true },
+      { text: '2x Revisi Layout & Konten', included: true },
+      { text: 'Garansi Maintenance 10 Hari', included: true },
+      { text: 'Penulisan Copywriting Persuasif', included: false },
+      { text: 'Basic SEO & Google Search Console', included: false },
+      { text: 'Form Booking Otomatis ke WA', included: false },
     ],
-    ctaText: 'Pilih Paket Starter',
-    href: 'https://wa.me/628XXXXXXXXX?text=Halo%20Studion%20Web,%20saya%20tertarik%20dengan%20paket%20Starter%20Landing%20Page',
+    ctaText: 'Pilih Starter',
+    href: 'https://wa.me/628XXXXXXXXX?text=Halo%20Studion%20Web,%20saya%20tertarik%20dengan%20paket%20Starter',
   },
   {
-    name: 'Company Profile',
-    badge: 'Paling Populer',
-    price: 'Rp 3.200.000',
+    name: 'Professional',
+    badge: 'Best Value',
+    price: 'Rp 1.800.000',
     period: 'sekali bayar',
-    desc: 'Website profesional utuh untuk membangun kepercayaan dan kredibilitas brand bisnis Anda.',
+    desc: 'Pilihan paling ideal untuk membangun kepercayaan brand dengan visual custom dan copywriting tepat.',
     isPopular: true,
     features: [
-      'Hingga 5-7 Halaman Kustom',
-      'Desain Eksklusif (Non-Template)',
-      'Setup Custom Domain .com / .id',
-      'Fitur Katalog Produk / Layanan',
-      'Integrasi Form Inquiry / Tiket',
-      'Optimasi SEO On-Page Lengkap',
-      'Mobile & Tablet Perfect Responsive',
-      'Garansi Maintenance 3 Bulan',
+      { text: 'Custom Domain (.com / .id)', included: true },
+      { text: 'Cloud Hosting (Dedicated/Fast)', included: true },
+      { text: '5 Halaman Website', included: true },
+      { text: 'SSL & Keamanan Website', included: true },
+      { text: 'Responsive Design (HP & Desktop)', included: true },
+      { text: 'WhatsApp Direct CTA', included: true },
+      { text: '3x Revisi Layout & Konten', included: true },
+      { text: 'Garansi Maintenance 20 Hari', included: true },
+      { text: 'Custom Design sesuai Branding', included: true },
+      { text: 'Penulisan Copywriting Persuasif', included: true },
+      { text: 'Basic SEO & Google Search Console', included: false },
+      { text: 'Form Booking Otomatis ke WA', included: false },
     ],
-    ctaText: 'Pilih Company Profile',
-    href: 'https://wa.me/628XXXXXXXXX?text=Halo%20Studion%20Web,%20saya%20tertarik%20dengan%20paket%20Company%20Profile',
+    ctaText: 'Pilih Professional',
+    href: 'https://wa.me/628XXXXXXXXX?text=Halo%20Studion%20Web,%20saya%20tertarik%20dengan%20paket%20Professional',
   },
   {
-    name: 'Custom Web App',
-    badge: 'Kebutuhan Kompleks',
-    price: 'Rp 5.500.000+',
-    period: 'mulai dari',
-    desc: 'Untuk sistem web khusus dengan integrasi backend, basis data, atau dashboard admin.',
+    name: 'Premium',
+    badge: 'Fitur & Tampilan Maksimal',
+    price: 'Rp 2.500.000',
+    period: 'sekali bayar',
+    desc: 'Paket lengkap untuk performa bisnis maksimal, siap ditemukan di Google, dan fitur booking interaktif.',
     isPopular: false,
     features: [
-      'Arsitektur Tailor-Made Kompleks',
-      'Integrasi Supabase / PostgreSQL Database',
-      'Sistem Dynamic Content / CMS',
-      'Custom API & Service Integration',
-      'Optimasi Keamanan & High Scalability',
-      'Prioritas Support & Training Admin',
-      'Garansi Maintenance 6 Bulan',
+      { text: 'Custom Domain (.com / .id)', included: true },
+      { text: 'Cloud Hosting (Dedicated/Fast)', included: true },
+      { text: '7 Halaman Website + Detail Page', included: true },
+      { text: 'SSL & Keamanan Website', included: true },
+      { text: 'Responsive Design (HP & Desktop)', included: true },
+      { text: 'WhatsApp Direct CTA', included: true },
+      { text: '4x Revisi Layout & Konten', included: true },
+      { text: 'Garansi Maintenance 30 Hari', included: true },
+      { text: 'Custom Design Interaktif', included: true },
+      { text: 'Copywriting Lengkap & Mendalam', included: true },
+      { text: 'Basic SEO & Setup Google Search Console', included: true },
+      { text: 'Form Booking Otomatis ke WA', included: true },
     ],
-    ctaText: 'Konsultasi Custom',
-    href: 'https://wa.me/628XXXXXXXXX?text=Halo%20Studion%20Web,%20saya%20ingin%20diskusi%20proyek%20Custom%20Web%20App',
+    ctaText: 'Pilih Premium',
+    href: 'https://wa.me/628XXXXXXXXX?text=Halo%20Studion%20Web,%20saya%20tertarik%20dengan%20paket%20Premium',
   },
 ];
 
@@ -80,7 +85,7 @@ const faqs = [
   },
   {
     q: 'Berapa lama proses pengerjaan websitenya?',
-    a: 'Untuk Landing Page rata-rata 3–5 hari kerja, Company Profile 7–12 hari kerja, sedangkan Custom Web App menyesuaikan kompleksitas fitur.',
+    a: 'Rata-rata pengerjaan memakan waktu 3–7 hari kerja tergantung dari kelengkapan materi dan kompleksitas paket yang dipilih.',
   },
   {
     q: 'Bagaimana jika saya memiliki alokasi anggaran khusus?',
@@ -92,7 +97,7 @@ const faqs = [
 <Layout title="Transparansi Biaya & Paket Website — Studion Web">
   <Navbar />
 
-  <main class="pt-24 pb-20">
+  <main class="pt-20 pb-20">
     <!-- HEADER PRICING -->
     <section class="max-w-4xl mx-auto px-4 text-center mb-16">
       <div class="inline-flex items-center gap-2 bg-yellow-300 text-slate-950 font-black text-xs uppercase px-4 py-1.5 rounded-full border border-yellow-400 mb-4">
@@ -124,9 +129,9 @@ const faqs = [
                 : 'bg-white/80 backdrop-blur-md text-slate-900 border border-slate-200/90 shadow-lg'
             }`}
           >
-            {/* POPULAR BADGE */}
+            {/* BEST VALUE BADGE */}
             {plan.isPopular && (
-              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-extrabold text-[11px] tracking-wider uppercase px-4 py-1 rounded-full shadow-md">
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-amber-300 text-slate-950 font-extrabold text-[11px] tracking-wider uppercase px-4 py-1.5 rounded-full shadow-md">
                 {plan.badge}
               </div>
             )}
@@ -168,17 +173,29 @@ const faqs = [
               <ul class="space-y-3 mb-8">
                 {plan.features.map((feat) => (
                   <li class="flex items-start gap-3 text-xs sm:text-sm font-semibold">
-                    <div
-                      class={`p-0.5 rounded-full shrink-0 mt-0.5 ${plan.isPopular ? 'bg-blue-500/20 text-yellow-400' : 'bg-blue-50 text-blue-600'}`}
-                    >
-                      <Check class="w-3.5 h-3.5" />
-                    </div>
+                    {feat.included ? (
+                      <div
+                        class={`p-0.5 rounded-full shrink-0 mt-0.5 ${plan.isPopular ? 'bg-blue-500/20 text-yellow-400' : 'bg-blue-50 text-blue-600'}`}
+                      >
+                        <Check class="w-3.5 h-3.5" />
+                      </div>
+                    ) : (
+                      <div
+                        class={`p-0.5 rounded-full shrink-0 mt-0.5 ${plan.isPopular ? 'bg-slate-800 text-slate-500' : 'bg-slate-100 text-slate-400'}`}
+                      >
+                        <X class="w-3.5 h-3.5" />
+                      </div>
+                    )}
                     <span
                       class={
-                        plan.isPopular ? 'text-slate-200' : 'text-slate-700'
+                        feat.included
+                          ? plan.isPopular
+                            ? 'text-slate-200'
+                            : 'text-slate-700'
+                          : 'text-slate-400 line-through decoration-slate-400/50'
                       }
                     >
-                      {feat}
+                      {feat.text}
                     </span>
                   </li>
                 ))}
@@ -227,8 +244,7 @@ const faqs = [
           rel="noopener noreferrer"
           class="shrink-0 inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-black text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all"
         >
-          <MessageCircle class="w-4 h-4 fill-slate-950" />
-          <span>Chat Custom Quote</span>
+          <span>Chat Custom Website</span>
         </a>
       </div>
     </section>

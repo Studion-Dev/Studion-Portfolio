@@ -1,10 +1,9 @@
 ---
 import {
   MessageSquare,
-  Sigma,
+  Layout,
   Code2,
   Rocket,
-  CheckCircle2,
   ArrowUpRight,
   Sparkles,
 } from '@lucide/astro';
@@ -13,38 +12,34 @@ const steps = [
   {
     number: '01',
     icon: MessageSquare,
-    title: 'Konsultasi & Discovery',
-    subtitle: 'Tahap Orientasi & Goal Setting',
+    title: 'Diskusi & Kebutuhan',
+    subtitle: 'Tahap Orientasi',
     description:
-      'Diskusi santai via WhatsApp atau Google Meet untuk menggali kebutuhan bisnis Anda, target audiens, serta fitur utama yang wajib ada di website.',
-    detail: 'Gratis',
+      'Diskusi santai via WhatsApp untuk menggali tujuan bisnis Anda, gaya desain yang disukai, serta fitur utama yang wajib ada di website.',
   },
   {
     number: '02',
-    icon: Sigma,
-    title: 'Desain UI/UX & Wireframe',
-    subtitle: 'Visualisasi Brand Eksklusif',
+    icon: Layout,
+    title: 'Desain & Layout',
+    subtitle: 'Visualisasi Brand',
     description:
       'Perancangan tata letak visual modern yang disesuaikan dengan identitas brand Anda. Mengutamakan kenyamanan pengunjung dan alur konversi.',
-    detail: 'Revisi Sampai Pas',
   },
   {
     number: '03',
     icon: Code2,
-    title: 'Development & Slicing',
-    subtitle: 'Eksekusi Clean Code',
+    title: 'Development & Coding',
+    subtitle: 'Eksekusi Website',
     description:
-      'Pengodean menggunakan framework Astro JS & Tailwind CSS untuk menghasilkan website dengan performa super cepat, ringan, dan aman.',
-    detail: 'Super Fast & Responsive',
+      'Website mulai dibangun secara menyeluruh—mulai dari tampilan yang rapi di HP maupun komputer, hingga semua tombol dan formulir berfungsi dengan lancar.',
   },
   {
     number: '04',
     icon: Rocket,
-    title: 'Testing & Launching',
-    subtitle: 'Serah Terima & Online',
+    title: 'Uji Coba & Launching',
+    subtitle: 'Siap Tayang',
     description:
-      'Pengujian lintas perangkat, optimasi SEO dasar, integrasi domain & hosting, hingga website resmi mengudara dan siap digunakan.',
-    detail: 'Siap Pakai & Edukasi Singkat',
+      'Anda bisa mencoba langsung websitemu. Setelah semua detail dirapikan dan disesuaikan, website resmi dirilis dan siap digunakan untuk jualan.',
   },
 ];
 ---
@@ -85,17 +80,54 @@ const steps = [
       </a>
     </div>
 
-    <!-- RIGHT SIDE: Vertical Timeline Cards -->
-    <div class="lg:col-span-7 flex flex-col gap-6 relative">
-      <!-- Vertical Line Connector -->
-      <div class="absolute left-8 top-8 bottom-8 w-1.5 bg-yellow-400/80 hidden sm:block -z-10"></div>
+    <!-- RIGHT SIDE CONTAINER -->
+    <div class="lg:col-span-7 relative">
+      <!-- 1. MOBILE ONLY: HORIZONTAL SWIPE CAROUSEL (sm:hidden) -->
+      <div class="block sm:hidden -mx-4 px-4">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-400 mb-3 px-1">
+          <span>Geser untuk melihat alur →</span>
+        </div>
 
-      {steps.map((step, index) => {
-        const IconComponent = step.icon;
-        return (
+        <div class="flex overflow-x-auto gap-4 snap-x snap-mandatory scrollbar-none pb-6">
+          {steps.map((step) => (
+            <div class="snap-center shrink-0 w-[85vw] max-w-[320px] bg-white border border-slate-200/90 rounded-3xl p-6 shadow-xl shadow-slate-200/50 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-slate-900 text-yellow-400 font-black text-lg font-heading flex items-center justify-center shadow-md">
+                    {step.number}
+                  </div>
+                  <span class="text-[11px] font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                    {step.subtitle}
+                  </span>
+                </div>
+
+                <h3 class="text-xl font-black text-slate-900 font-heading mb-2">
+                  {step.title}
+                </h3>
+
+                <p class="text-slate-600 text-xs font-medium leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+
+              <div class="pt-4 mt-6 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-400">
+                <span>Langkah {step.number} dari 04</span>
+                <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- 2. DESKTOP / TABLET ONLY: VERTICAL TIMELINE (hidden sm:flex) -->
+      <div class="hidden sm:flex flex-col gap-6 relative">
+        <!-- Vertical Line Connector -->
+        <div class="absolute left-8 top-8 bottom-8 w-1.5 bg-yellow-400/80 -z-10"></div>
+
+        {steps.map((step) => (
           <div class="group relative bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-3xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
             <div class="flex flex-col sm:flex-row items-start gap-5">
-              <!-- Number & Icon Badge -->
+              <!-- Number Badge -->
               <div class="flex items-center gap-3 shrink-0">
                 <div class="w-12 h-12 rounded-2xl bg-slate-900 text-yellow-400 font-black text-lg font-heading flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-md">
                   {step.number}
@@ -113,19 +145,14 @@ const steps = [
                   </span>
                 </div>
 
-                <p class="text-slate-600 text-sm sm:text-base font-medium leading-relaxed mb-5">
+                <p class="text-slate-600 text-sm sm:text-base font-medium leading-relaxed">
                   {step.description}
                 </p>
-
-                <div class="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-bold text-slate-500">
-                  <CheckCircle2 class="w-4 h-4 text-blue-600" />
-                  <span>{step.detail}</span>
-                </div>
               </div>
             </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   </div>
 </section>

@@ -3,12 +3,11 @@ import { Send, Sparkles, ArrowUpRight } from '@lucide/astro';
 
 const socialLinks = [
   {
-    name: 'WhatsApp Direct',
+    name: 'WhatsApp',
     handle: '+62 898-2177-722',
     desc: 'Respon cepat untuk diskusi proyek',
     href: 'https://wa.me/628982177722', // Ganti nomor WA Anda
     type: 'whatsapp',
-    badge: 'Fast Response',
     color: 'hover:border-emerald-500/50 hover:shadow-emerald-500/10',
     iconBg: 'bg-emerald-50 text-emerald-600 border-emerald-100',
   },
@@ -18,17 +17,15 @@ const socialLinks = [
     desc: 'Cek update & portofolio terbaru',
     href: 'https://instagram.com/dion.site', // Ganti username IG Anda
     type: 'instagram',
-    badge: 'Daily Activity',
     color: 'hover:border-pink-500/50 hover:shadow-pink-500/10',
     iconBg: 'bg-pink-50 text-pink-600 border-pink-100',
   },
   {
-    name: 'Facebook Page',
+    name: 'Facebook',
     handle: 'Studion Web',
     desc: 'Komunitas & ulasan klien',
     href: 'https://facebook.com/share/19gvqjN5kq/',
     type: 'facebook',
-    badge: 'Official Page',
     color: 'hover:border-blue-500/50 hover:shadow-blue-500/10',
     iconBg: 'bg-blue-50 text-blue-600 border-blue-100',
   },
@@ -57,7 +54,7 @@ const socialLinks = [
 
       <p class="text-slate-600 font-semibold text-base sm:text-lg leading-relaxed mb-8">
         Punya pertanyaan atau ingin diskusi awal? Hubungi kami lewat platform
-        favorit Anda atau isi tiket proyek di samping.
+        favorit Anda atau isi form tiket proyek.
       </p>
 
       <!-- Social Media Wrapper Cards -->
@@ -100,9 +97,6 @@ const socialLinks = [
                     <h3 class="text-base font-bold text-slate-900 font-heading group-hover:text-blue-600 transition-colors">
                       {item.name}
                     </h3>
-                    <span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200/80">
-                      {item.badge}
-                    </span>
                   </div>
                   <p class="text-slate-500 text-xs font-medium mt-0.5">
                     {item.handle}
@@ -131,7 +125,7 @@ const socialLinks = [
               FAST-TRACK CONSULTATION
             </span>
             <h3 class="text-xl sm:text-2xl font-black font-heading text-white">
-              Buat Tiket Proyek Anda
+              Gratis Konsultasi Proyek Anda
             </h3>
           </div>
           <div class="w-10 h-10 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-yellow-400 shrink-0">
@@ -264,7 +258,7 @@ const socialLinks = [
             class="w-full bg-blue-600 hover:bg-yellow-400 text-white hover:text-slate-950 font-bold text-base py-4 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
           >
             <Send class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            <span>Kirim Tiket Diskusi ke WhatsApp</span>
+            <span>Kirim ke WhatsApp</span>
           </button>
 
           <p class="text-[11px] font-medium text-slate-400 text-center pt-1">

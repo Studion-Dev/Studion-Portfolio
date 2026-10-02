@@ -54,18 +54,27 @@ const services = [
 >
   <!-- NEW CENTERED HEADER (No Border) -->
   <div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 md:mb-16">
-    <div class="inline-flex items-center gap-2 text-blue-600 font-bold text-xs tracking-widest uppercase mb-3">
+    <div
+      id="service-badge"
+      class="inline-flex items-center gap-2 text-blue-600 font-bold text-xs tracking-widest uppercase mb-3 opacity-0"
+    >
       <span>OUR SERVICES</span>
     </div>
 
-    <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight mb-4">
+    <h2
+      id="service-headline"
+      class="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight mb-4 opacity-0"
+    >
       VALUE & SOLUSI <br />
       <span class="inline-block bg-yellow-300 px-4 py-1 -rotate-1 rounded-2xl border border-yellow-400 text-slate-950">
         YANG ANDA DAPAT.
       </span>
     </h2>
 
-    <p class="text-slate-600 font-semibold text-base md:text-lg max-w-xl">
+    <p
+      id="service-body"
+      class="text-slate-600 font-semibold text-base md:text-lg max-w-xl opacity-0"
+    >
       Bukan sekadar website cantik, tapi aset digital yang dirancang untuk
       performa tinggi dan konversi bisnis maksimal.
     </p>
@@ -77,7 +86,7 @@ const services = [
       const IconComponent = item.icon;
       return (
         <div
-          class={`group relative bg-white/70 backdrop-blur-sm border border-slate-200/80 rounded-3xl p-6 md:p-8 flex flex-col justify-between hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 ${item.gridSpan}`}
+          class={`service-card group relative bg-white/70 backdrop-blur-sm border border-slate-200/80 rounded-3xl p-6 md:p-8 flex flex-col justify-between hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 ${item.gridSpan} opacity-0`}
         >
           <!-- Top Badge & Icon -->
           <div>
@@ -116,7 +125,10 @@ const services = [
   </div>
 
   <!-- GUARANTEE BANNER WITH GLASS SHINE EFFECT -->
-  <div class="group relative overflow-hidden mt-10 bg-slate-900 text-white rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+  <div
+    id="service-banner"
+    class="relative overflow-hidden mt-10 bg-slate-900 text-white rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl opacity-0"
+  >
     <!-- EFEK KILATAN KACA (SHINNER OVERLAY) -->
     <div class="pointer-events-none absolute -inset-y-full w-1/2 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-shine"></div>
 
@@ -138,10 +150,10 @@ const services = [
       href="https://wa.me/"
       target="_blank"
       rel="noopener noreferrer"
-      class="relative z-10 w-full md:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-yellow-400 text-white hover:text-slate-950 font-bold text-sm px-6 py-3.5 rounded-2xl transition-all duration-200 shrink-0 shadow-lg"
+      class="relative group z-10 w-full md:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-yellow-400 text-white hover:text-slate-950 font-bold text-sm px-6 py-3.5 rounded-2xl transition-all duration-200 shrink-0 shadow-lg"
     >
       <span>Diskusi Kebutuhan Web</span>
-      <ArrowUpRight class="w-4 h-4" />
+      <ArrowUpRight class="w-4 h-4 text-yellow-400 group-hover:text-slate-950" />
     </a>
   </div>
 </section>
@@ -161,3 +173,93 @@ const services = [
     animation: shine 4s infinite ease-in-out;
   }
 </style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. SET INITIAL STATE
+    gsap.set('#service-badge', { y: -30, opacity: 0 });
+    gsap.set(['#service-headline', '#service-body'], { y: 50, opacity: 0 });
+    gsap.set('#service-banner', { y: 60, opacity: 0, scale: 0.95 });
+
+    // Initial position untuk kartu Bento (Genap dari Kiri, Ganjil dari Kanan)
+    const cards = document.querySelectorAll('.service-card');
+    cards.forEach((card, index) => {
+      const xOffset = index % 2 === 0 ? -100 : 100; // Genap = -100px (Kiri), Ganjil = 100px (Kanan)
+      gsap.set(card, { x: xOffset, opacity: 0, scale: 0.95 });
+    });
+
+    ScrollTrigger.refresh();
+
+    // 2. ANIMASI HEADER (Jalan 1x)
+    const headerTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#services',
+        start: 'top 65%',
+        once: true, // Animasi cuma jalan 1x selamanya
+      },
+    });
+
+    headerTl
+      .to('#service-badge', {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+      })
+      .to(
+        '#service-headline',
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'back.out(1.4)',
+        },
+        '-=0.2'
+      )
+      .to(
+        '#service-body',
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: 'power2.out',
+        },
+        '-=0.3'
+      );
+
+    // 3. ANIMASI BENTO GRID CARDS (SLIDE KIRI - KANAN 1X)
+    cards.forEach((card) => {
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 70%',
+          once: true, // Kunci biar pas di-scroll balik nggak ngulang lagi
+        },
+        x: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: 'back.out(1.3)',
+      });
+    });
+
+    // 4. ANIMASI BANNER GUARANTEE BAWAH (Jalan 1x)
+    gsap.to('#service-banner', {
+      scrollTrigger: {
+        trigger: '#service-banner',
+        start: 'top 75%',
+        once: true, // Jalan 1x aja
+      },
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.7,
+      ease: 'power2.out',
+    });
+  });
+</script>

@@ -1,0 +1,258 @@
+---
+// ParallaxBackground.astro
+import {
+  Code2,
+  Terminal,
+  Braces,
+  Layout,
+  Cpu,
+  Globe,
+  Sparkles,
+  FileCode,
+} from '@lucide/astro';
+---
+
+<div
+  id="parallax-container"
+  class="fixed inset-0 z-0 pointer-events-none overflow-hidden select-none"
+>
+  <!-- ======================================================= -->
+  <!-- 🚀 ELEMEN NUMPANG LEWAT (SUPER FAST & MOTION BLUR) -->
+  <!-- ======================================================= -->
+
+  <!-- 1. VIEWPORT ATAS (Hero / Portfolio) - Melesat Kanan -->
+  <div
+    id="fast-icon-top"
+    class="parallax-fast absolute right-[5%] top-[18%] text-blue-500/30 blur-[2px] opacity-0"
+  >
+    <div class="floating-element">
+      <Code2 class="w-28 h-28 -rotate-12" />
+    </div>
+  </div>
+
+  <!-- 2. VIEWPORT TENGAH 1 (Services) - Melesat Kiri -->
+  <div
+    id="fast-icon-mid"
+    class="parallax-fast absolute left-[3%] top-[42%] text-yellow-400/35 blur-[2.5px] opacity-0"
+  >
+    <div class="floating-element">
+      <Terminal class="w-32 h-32 rotate-12" />
+    </div>
+  </div>
+
+  <!-- 3. VIEWPORT TENGAH 2 (Process / Pricing) - Melesat Kanan Atas -->
+  <div
+    id="fast-icon-mid-2"
+    class="parallax-fast absolute right-[8%] top-[60%] text-blue-400/25 blur-[2px] opacity-0"
+  >
+    <div class="floating-element">
+      <FileCode class="w-24 h-24 -rotate-45" />
+    </div>
+  </div>
+
+  <!-- 4. VIEWPORT BAWAH (About / Contact) - Melesat Kiri Bawah -->
+  <div
+    id="fast-icon-bottom"
+    class="parallax-fast absolute left-[6%] top-[80%] text-slate-700/30 blur-[2px] opacity-0"
+  >
+    <div class="floating-element">
+      <Braces class="w-28 h-28 rotate-45" />
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- 🎨 ELEMEN TAMBAHAN VIEWPORT ATAS (HERO RAMEAN DIKIT) -->
+  <!-- ======================================================= -->
+
+  <!-- Globe / Network Icon (Kiri Atas Hero) -->
+  <div
+    class="parallax-slow absolute left-[6%] top-[12%] text-blue-600/20"
+    data-speed="0.25"
+  >
+    <div class="floating-element">
+      <Globe class="w-14 h-14" />
+    </div>
+  </div>
+
+  <!-- Sparkles Icon (Kanan Atas Hero) -->
+  <div
+    class="parallax-slow absolute right-[18%] top-[10%] text-yellow-400/40"
+    data-speed="0.3"
+  >
+    <div class="floating-element">
+      <Sparkles class="w-8 h-8 rotate-12" />
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- 🎯 ELEMEN DECORATIVE SEDANG & AMBIENT BACKGROUND -->
+  <!-- ======================================================= -->
+
+  <!-- Layout Icon - Area Portofolio -->
+  <div
+    class="parallax-slow absolute left-[8%] top-[34%] text-blue-600/15"
+    data-speed="0.2"
+  >
+    <div class="floating-element">
+      <Layout class="w-12 h-12 -rotate-6" />
+    </div>
+  </div>
+
+  <!-- Cpu Icon - Area Process -->
+  <div
+    class="parallax-slow absolute right-[12%] top-[68%] text-yellow-400/25"
+    data-speed="0.22"
+  >
+    <div class="floating-element">
+      <Cpu class="w-10 h-10 rotate-12" />
+    </div>
+  </div>
+
+  <!-- Ambient Grid Pattern Background -->
+  <div
+    class="parallax-slow absolute left-1/2 -translate-x-1/2 top-0 w-[120vw] h-[350vh] opacity-[0.035] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:24px_24px]"
+    data-speed="0.08"
+  ></div>
+
+  <!-- Ambient Glow Orbs -->
+  <div
+    class="parallax-slow absolute -left-20 top-[8%] w-80 h-80 rounded-full bg-blue-500/10 blur-3xl"
+    data-speed="0.1"
+  >
+    <div class="floating-element"></div>
+  </div>
+
+  <div
+    class="parallax-slow absolute right-[12%] top-[48%] w-44 h-44 rounded-full bg-yellow-400/10 blur-2xl"
+    data-speed="0.15"
+  >
+    <div class="floating-element"></div>
+  </div>
+</div>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // -------------------------------------------------------------
+    // 🔄 0. IDLE FLOATING ANIMATION (GOYANG / NAIK TURUN RANDOM)
+    // -------------------------------------------------------------
+    const floatTargets = document.querySelectorAll('.floating-element');
+
+    floatTargets.forEach((target) => {
+      // Nilai acak biar pergerakan tiap elemen beda-beda & berasa natural
+      const randomY = 10 + Math.random() * 15; // Amplitudo Y (10px - 25px)
+      const randomX = -8 + Math.random() * 16; // Amplitudo X (-8px sampai +8px)
+      const randomRotate = -6 + Math.random() * 12; // Muter dikit (-6deg sampai +6deg)
+      const randomDuration = 3 + Math.random() * 3; // Durasi (3s - 6s)
+      const randomDelay = Math.random() * 2; // Offset awal biar ga serentak
+
+      gsap.to(target, {
+        y: randomY,
+        x: randomX,
+        rotate: randomRotate,
+        duration: randomDuration,
+        delay: randomDelay,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+      });
+    });
+
+    // -------------------------------------------------------------
+    // 1. ELEMEN SLOW / AMBIENT BACKGROUND (PARALLAX)
+    // -------------------------------------------------------------
+    const slowItems = document.querySelectorAll('.parallax-slow');
+    slowItems.forEach((item) => {
+      const speed = parseFloat(item.getAttribute('data-speed') || '0.2');
+      gsap.to(item, {
+        y: () => -(window.innerHeight * speed),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.5,
+        },
+      });
+    });
+
+    // -------------------------------------------------------------
+    // 2. ELEMEN KENCANG (NUMPANG LEWAT)
+    // -------------------------------------------------------------
+    // #1 Hero / Portfolio
+    gsap.fromTo(
+      '#fast-icon-top',
+      { y: 250, opacity: 0, scale: 0.8 },
+      {
+        y: -450,
+        opacity: 0.8,
+        scale: 1.2,
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.15,
+        },
+      }
+    );
+
+    // #2 Services Area
+    gsap.fromTo(
+      '#fast-icon-mid',
+      { y: 300, opacity: 0, scale: 0.7 },
+      {
+        y: -500,
+        opacity: 0.9,
+        scale: 1.25,
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '#services',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.15,
+        },
+      }
+    );
+
+    // #3 Process / Pricing Area
+    gsap.fromTo(
+      '#fast-icon-mid-2',
+      { y: 250, opacity: 0, scale: 0.8 },
+      {
+        y: -450,
+        opacity: 0.85,
+        scale: 1.15,
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '#process',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.15,
+        },
+      }
+    );
+
+    // #4 About / Contact Area
+    gsap.fromTo(
+      '#fast-icon-bottom',
+      { y: 300, opacity: 0, scale: 0.7 },
+      {
+        y: -500,
+        opacity: 0.8,
+        scale: 1.2,
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '#contact',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.15,
+        },
+      }
+    );
+  });
+</script>

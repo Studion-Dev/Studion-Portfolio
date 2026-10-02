@@ -3,24 +3,27 @@ import { Send, Sparkles, ArrowUpRight } from '@lucide/astro';
 
 const socialLinks = [
   {
+    id: 'social-wa',
     name: 'WhatsApp',
     handle: '+62 898-2177-722',
     desc: 'Respon cepat untuk diskusi proyek',
-    href: 'https://wa.me/628982177722', // Ganti nomor WA Anda
+    href: 'https://wa.me/628982177722',
     type: 'whatsapp',
     color: 'hover:border-emerald-500/50 hover:shadow-emerald-500/10',
     iconBg: 'bg-emerald-50 text-emerald-600 border-emerald-100',
   },
   {
+    id: 'social-ig',
     name: 'Instagram',
     handle: '@dion.site',
     desc: 'Cek update & portofolio terbaru',
-    href: 'https://instagram.com/dion.site', // Ganti username IG Anda
+    href: 'https://instagram.com/dion.site',
     type: 'instagram',
     color: 'hover:border-pink-500/50 hover:shadow-pink-500/10',
     iconBg: 'bg-pink-50 text-pink-600 border-pink-100',
   },
   {
+    id: 'social-fb',
     name: 'Facebook',
     handle: 'Studion Web',
     desc: 'Komunitas & ulasan klien',
@@ -39,12 +42,18 @@ const socialLinks = [
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-start">
     <!-- LEFT COLUMN: Social CTA Wrappers & Info -->
     <div class="lg:col-span-5 flex flex-col items-start">
-      <div class="inline-flex items-center gap-2 mb-3 bg-yellow-300 text-slate-950 font-bold text-xs px-3.5 py-1.5 rounded-full border border-yellow-400/50 shadow-sm">
+      <div
+        id="contact-badge"
+        class="inline-flex items-center gap-2 mb-3 bg-yellow-300 text-slate-950 font-bold text-xs px-3.5 py-1.5 rounded-full border border-yellow-400/50 shadow-sm opacity-0"
+      >
         <Sparkles class="w-3.5 h-3.5 text-slate-950" />
         <span>START A PROJECT</span>
       </div>
 
-      <h2 class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-heading leading-tight mb-6">
+      <h2
+        id="contact-heading"
+        class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-heading leading-tight mb-6 opacity-0"
+      >
         MARI BUAT <br />
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-blue-500">
           WEBSITE IMPIAN
@@ -52,7 +61,10 @@ const socialLinks = [
         <span class="text-yellow-400">.</span>
       </h2>
 
-      <p class="text-slate-600 font-semibold text-base sm:text-lg leading-relaxed mb-8">
+      <p
+        id="contact-desc"
+        class="text-slate-600 font-semibold text-base sm:text-lg leading-relaxed mb-8 opacity-0"
+      >
         Punya pertanyaan atau ingin diskusi awal? Hubungi kami lewat platform
         favorit Anda atau isi form tiket proyek.
       </p>
@@ -62,10 +74,11 @@ const socialLinks = [
         {socialLinks.map((item) => {
           return (
             <a
+              id={item.id}
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              class={`group bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 sm:p-5 flex items-center justify-between transition-all duration-300 shadow-sm ${item.color}`}
+              class={`contact-social-card group bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 sm:p-5 flex items-center justify-between transition-all duration-300 shadow-sm opacity-0 ${item.color}`}
             >
               <div class="flex items-center gap-4">
                 <div
@@ -115,10 +128,10 @@ const socialLinks = [
 
     <!-- RIGHT COLUMN: Custom Project Ticket Form -->
     <div class="lg:col-span-7">
-      <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 md:p-10 border border-slate-800 shadow-2xl relative overflow-hidden">
-        <!-- Subtle Glow Background -->
-        <div class="absolute -top-24 -right-24 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
-
+      <div
+        id="contact-form-card"
+        class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 md:p-10 border border-slate-800 shadow-2xl relative overflow-hidden opacity-0"
+      >
         <div class="flex items-center justify-between gap-4 mb-6 border-b border-slate-800 pb-5">
           <div>
             <span class="text-xs font-bold text-yellow-400 tracking-wider uppercase block mb-1">
@@ -271,50 +284,110 @@ const socialLinks = [
   </div>
 </section>
 
-<!-- SCRIPT AUTO FORMAT WHATSAPP TICKET -->
+<!-- GSAP INDIVIDUAL SCROLLTRIGGER SCRIPT -->
 <script>
-  const form = document.getElementById(
-    'project-ticket-form'
-  ) as HTMLFormElement;
-  const PHONE_NUMBER = '628982177722'; // Ganti dengan nomor WhatsApp utama Anda
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
+  gsap.registerPlugin(ScrollTrigger);
 
-    const name = (document.getElementById('client_name') as HTMLInputElement)
-      .value;
-    const business = (
-      document.getElementById('business_name') as HTMLInputElement
-    ).value;
-    const service = (
-      document.getElementById('service_type') as HTMLSelectElement
-    ).value;
-    const notes = (
-      document.getElementById('project_notes') as HTMLTextAreaElement
-    ).value;
+  document.addEventListener('DOMContentLoaded', () => {
+    // Set Initial Hidden States
+    gsap.set(['#contact-badge', '#contact-heading', '#contact-desc'], {
+      y: 30,
+      opacity: 0,
+    });
+    gsap.set('.contact-social-card', { y: 35, opacity: 0 });
+    gsap.set('#contact-form-card', { y: 40, opacity: 0, scale: 0.96 });
 
-    // Get Selected Budget
-    const selectedBudget =
-      (
-        document.querySelector(
-          'input[name="budget"]:checked'
-        ) as HTMLInputElement
-      )?.value || '-';
+    ScrollTrigger.refresh();
 
-    // Format Message Text
-    const text =
-      `Halo Studion Web! Saya mau buat tiket diskusi proyek baru:\n\n` +
-      `📌 *Detail Tiket Proyek*\n` +
-      `• Nama: ${name}\n` +
-      `• Brand / Bisnis: ${business}\n` +
-      `• Jenis Website: ${service}\n` +
-      `• Estimasi Budget: ${selectedBudget}\n` +
-      `${notes ? `• Catatan: ${notes}\n` : ''}\n` +
-      `Mohon diinfokan jadwal konsultasinya ya, terima kasih!`;
+    // 1. HEADER SECTION ANIMATION
+    gsap.to(['#contact-badge', '#contact-heading', '#contact-desc'], {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+      stagger: 0.12,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '#contact-heading',
+        start: 'top 85%',
+        once: true,
+      },
+    });
 
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodedText}`;
+    // 2. INDIVIDUAL SOCIAL CARD ANIMATIONS (WA, IG, FB)
+    const socialCards = document.querySelectorAll('.contact-social-card');
+    socialCards.forEach((card) => {
+      gsap.to(card, {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          once: true,
+        },
+      });
+    });
 
-    window.open(whatsappUrl, '_blank');
+    // 3. RIGHT FORM CARD INDIVIDUAL ANIMATION
+    gsap.to('#contact-form-card', {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 0.6,
+      ease: 'back.out(1.1)',
+      scrollTrigger: {
+        trigger: '#contact-form-card',
+        start: 'top 80%',
+        once: true,
+      },
+    });
+
+    // 4. WHATSAPP FORM HANDLER
+    const form = document.getElementById(
+      'project-ticket-form'
+    ) as HTMLFormElement;
+    const PHONE_NUMBER = '628982177722';
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = (document.getElementById('client_name') as HTMLInputElement)
+        .value;
+      const business = (
+        document.getElementById('business_name') as HTMLInputElement
+      ).value;
+      const service = (
+        document.getElementById('service_type') as HTMLSelectElement
+      ).value;
+      const notes = (
+        document.getElementById('project_notes') as HTMLTextAreaElement
+      ).value;
+
+      const selectedBudget =
+        (
+          document.querySelector(
+            'input[name="budget"]:checked'
+          ) as HTMLInputElement
+        )?.value || '-';
+
+      const text =
+        `Halo Studion Web! Saya mau buat tiket diskusi proyek baru:\n\n` +
+        `📌 *Detail Tiket Proyek*\n` +
+        `• Nama: ${name}\n` +
+        `• Brand / Bisnis: ${business}\n` +
+        `• Jenis Website: ${service}\n` +
+        `• Estimasi Budget: ${selectedBudget}\n` +
+        `${notes ? `• Catatan: ${notes}\n` : ''}\n` +
+        `Mohon diinfokan jadwal konsultasinya ya, terima kasih!`;
+
+      const encodedText = encodeURIComponent(text);
+      const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodedText}`;
+
+      window.open(whatsappUrl, '_blank');
+    });
   });
 </script>

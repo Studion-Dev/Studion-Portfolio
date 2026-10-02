@@ -8,15 +8,21 @@ import About from '../components/About.astro';
 import PricingBreak from '../components/PricingBreak.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import ParallaxBackground from '../components/ParallaxBackground.astro';
 ---
 
 <Layout>
-  <Hero />
-  <Portfolio />
-  <Services />
-  <Process />
-  <PricingBreak />
-  <About />
-  <Contact />
-  <Footer />
+  <!-- Komponen Paralaks Melayang di Background -->
+  <ParallaxBackground />
+
+  <div class="relative z-10">
+    <Hero />
+    <Portfolio />
+    <Services />
+    <Process />
+    <PricingBreak />
+    <About />
+    <Contact />
+    <Footer />
+  </div>
 </Layout>

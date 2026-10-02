@@ -16,7 +16,7 @@ const navLinks = [
 >
   <nav
     id="main-nav"
-    class="w-full max-w-5xl rounded-full px-5 py-3 flex items-center justify-between nav-scrolled"
+    class="w-full max-w-5xl rounded-full px-5 py-3 flex items-center justify-between bg-white/80 backdrop-blur-md border border-slate-200/80 shadow-lg shadow-slate-900/5 nav-scrolled transition-all duration-300"
   >
     <!-- Brand / Logo -->
     <a href="/#" class="flex items-center gap-2 group">
@@ -43,7 +43,7 @@ const navLinks = [
     <!-- CTA Button -->
     <div class="hidden md:flex items-center gap-3">
       <a
-        href="https://wa.me/"
+        href="https://wa.me/628982177722"
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 bg-blue-600 hover:bg-yellow-400 text-white hover:text-slate-950 font-semibold text-sm px-5 py-2.5 rounded-full shadow-md shadow-blue-600/20 hover:shadow-yellow-400/30 transition-all duration-200 group"
@@ -56,7 +56,7 @@ const navLinks = [
     <!-- Mobile Menu Button -->
     <button
       id="mobile-menu-btn"
-      class="md:hidden text-slate-800 hover:text-blue-600 p-1 focus:outline-none"
+      class="md:hidden text-slate-800 hover:text-blue-600 p-1 focus:outline-none cursor-pointer"
       aria-label="Toggle Navigation Menu"
     >
       <Menu id="menu-icon-open" class="w-6 h-6" />
@@ -84,7 +84,7 @@ const navLinks = [
 
     <div class="pt-4 border-t border-slate-200 flex flex-col gap-3">
       <a
-        href="https://wa.me/"
+        href="https://wa.me/628982177722"
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-yellow-400 text-white hover:text-slate-950 font-semibold text-sm px-5 py-3 rounded-xl transition-all shadow-md"
@@ -105,10 +105,9 @@ const navLinks = [
   const iconClose = document.getElementById('menu-icon-close');
   const mobileLinks = document.querySelectorAll('.mobile-link');
 
-  // Trigger Navbar muncul jika scroll sudah melebihi 3/4 tinggi Hero
   window.addEventListener('scroll', () => {
     const heroHeight = hero ? hero.offsetHeight : 600;
-    const triggerPoint = heroHeight * 0.5; // 1/2 Hero
+    const triggerPoint = heroHeight * 0.5;
 
     if (window.scrollY > triggerPoint) {
       header?.classList.remove(
